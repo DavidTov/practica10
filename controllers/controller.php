@@ -10,7 +10,7 @@
 			}
 
 
-			$respuestaEnlace = datos::enlacesPaginasModel($enlace);
+			$respuestaEnlace = paginas::enlacesPaginasModel($enlace);
 
 			include $respuestaEnlace;
 		}
