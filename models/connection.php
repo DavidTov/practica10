@@ -17,6 +17,9 @@
 			$this->$password = "";
 
 			$pdo = new PDO($link, $user, $password);
+			//$pdo->exec("SET CHARACTER utf8");
+
+			return $pdo;
 		}
 	}
 
