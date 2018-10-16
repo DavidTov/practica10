@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 16, 2018 at 01:23 AM
+-- Generation Time: Oct 16, 2018 at 02:32 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -63,6 +63,18 @@ CREATE TABLE `maestros` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `problematica`
+--
+
+CREATE TABLE `problematica` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(255) COLLATE utf8_bin NOT NULL,
+  `decripcion` varchar(255) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tutoria`
 --
 
@@ -73,7 +85,7 @@ CREATE TABLE `tutoria` (
   `fecha` date NOT NULL,
   `hora` varchar(50) COLLATE utf8_bin NOT NULL,
   `tipoTutoria` varchar(255) COLLATE utf8_bin NOT NULL,
-  `temaTutoria` varchar(255) COLLATE utf8_bin NOT NULL
+  `Problematica` varchar(255) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -124,12 +136,20 @@ ALTER TABLE `maestros`
   ADD KEY `carrera` (`carrera`);
 
 --
+-- Indexes for table `problematica`
+--
+ALTER TABLE `problematica`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `nombre` (`nombre`);
+
+--
 -- Indexes for table `tutoria`
 --
 ALTER TABLE `tutoria`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_alumno` (`id_alumno`),
-  ADD KEY `id_maestro` (`id_maestro`);
+  ADD KEY `id_maestro` (`id_maestro`),
+  ADD KEY `Problematica` (`Problematica`);
 
 --
 -- Indexes for table `usuarios`
@@ -158,6 +178,12 @@ ALTER TABLE `carreras`
 -- AUTO_INCREMENT for table `maestros`
 --
 ALTER TABLE `maestros`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `problematica`
+--
+ALTER TABLE `problematica`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -194,7 +220,8 @@ ALTER TABLE `maestros`
 --
 ALTER TABLE `tutoria`
   ADD CONSTRAINT `tutoria_ibfk_1` FOREIGN KEY (`id_alumno`) REFERENCES `alumnos` (`id`),
-  ADD CONSTRAINT `tutoria_ibfk_2` FOREIGN KEY (`id_maestro`) REFERENCES `maestros` (`id`);
+  ADD CONSTRAINT `tutoria_ibfk_2` FOREIGN KEY (`id_maestro`) REFERENCES `maestros` (`id`),
+  ADD CONSTRAINT `tutoria_ibfk_3` FOREIGN KEY (`Problematica`) REFERENCES `problematica` (`nombre`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
