@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 16, 2018 at 10:01 PM
+-- Generation Time: Oct 16, 2018 at 10:55 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -57,7 +57,8 @@ CREATE TABLE `maestros` (
   `nombreMaestro` varchar(255) COLLATE utf8_bin NOT NULL,
   `carrera` varchar(255) COLLATE utf8_bin NOT NULL,
   `email` varchar(255) COLLATE utf8_bin NOT NULL,
-  `password` varchar(255) COLLATE utf8_bin NOT NULL
+  `password` varchar(255) COLLATE utf8_bin NOT NULL,
+  `foto` varchar(255) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -97,7 +98,7 @@ CREATE TABLE `tutoria` (
 CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
   `nombre` varchar(255) COLLATE utf8_bin NOT NULL,
-  `nickname` varchar(255) COLLATE utf8_bin NOT NULL,
+  `email` varchar(255) COLLATE utf8_bin NOT NULL,
   `tipo` varchar(255) COLLATE utf8_bin NOT NULL,
   `password` varchar(255) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -106,7 +107,7 @@ CREATE TABLE `usuarios` (
 -- Dumping data for table `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nombre`, `nickname`, `tipo`, `password`) VALUES
+INSERT INTO `usuarios` (`id`, `nombre`, `email`, `tipo`, `password`) VALUES
 (1, 'Mario Humberto Rodriguez Chavez', 'mario', 'maestro', 'mario');
 
 --
@@ -134,6 +135,7 @@ ALTER TABLE `carreras`
 ALTER TABLE `maestros`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `nombreMaestro` (`nombreMaestro`),
+  ADD UNIQUE KEY `email` (`email`),
   ADD KEY `carrera` (`carrera`);
 
 --
@@ -157,7 +159,7 @@ ALTER TABLE `tutoria`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `nickname` (`nickname`);
+  ADD UNIQUE KEY `nickname` (`email`);
 
 --
 -- AUTO_INCREMENT for dumped tables
