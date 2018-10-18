@@ -1,7 +1,7 @@
 
   <section class="content-header">
     <h1>
-      tutor
+      tutor - teacher
       <small>Optional description</small>
     </h1>
     <ol class="breadcrumb">

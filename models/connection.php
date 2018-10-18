@@ -1,24 +1,26 @@
-<?php 
-	// Clase conexion, Tiene el método conectar para conectarse a la bd
+<?php 	
 	
 	/**
-	 * 
+	 * Clase conexion, Tiene el método conectar para conectarse a la bd
 	 */
 	class connection
 	{	
 
+		// Se declaran las variables miembro de la clase como privadas
 		private $link;
 		private $user;
-		private $password;
-		
-		function conectar(){
-			$this->$link = "mysql:host=localhost;dbname=practica10";
-			$this->$user = "root";
-			$this->$password = "";
+		private $password;			
 
-			$pdo = new PDO($link, $user, $password);
+		function conectar(){			
+			$this->link = "mysql:host=localhost;dbname=practica10"; // se guarda el tipo de bd y el nombre de la bd
+			$this->user = "root"; // nombre de usuario
+			$this->password = ""; // Contraseña
+
+			// Se declara un objeto del tipo PDO y se le pasan como parámetros las tres variables antes usadas
+			$pdo = new PDO($this->link, $this->user, $this->password);
 			//$pdo->exec("SET CHARACTER utf8");
 
+			// Se retorna el objeto PDO
 			return $pdo;
 		}
 	}

@@ -62,5 +62,12 @@
 			// Se le pasa como parámetro la variable enlacesController
 			include $respuesta->paginasModel($enlacesController);
 		}
+
+
+		// Método que le manda el nombre de una tabla al modelo para recibir todos los datos de 
+		// dicha tabla y poder ser usados en la vista
+		function getAllController($table){
+			
+		}
 	}
 ?>

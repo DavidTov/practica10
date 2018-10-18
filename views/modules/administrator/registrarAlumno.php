@@ -1,3 +1,18 @@
+<?php 
+  //REGISTRO DE UN ALUMNO
+
+  // Aquí obtenemos los datos de las carreras y de los tutores para incluirlos en el
+  // select correspondiente
+
+  // Se declara un objeto del tipo mvcController
+  $carreras = new MvcController();
+
+  // Se llama al método del controlador para obtener los datos de las carreras
+  $carreras->
+
+
+ ?>
+
 
 <section class="content-header">
   <br>
