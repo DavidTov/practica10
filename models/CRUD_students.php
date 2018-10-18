@@ -7,7 +7,7 @@
 	class studentsData{
 
 		// Método para traer los datos de los alumnos
-		function getStudents(){
+		function getAllStudentsModel(){
 			// Consulta sql
 			$sql = "SELECT * FROM alumnos";
 
@@ -26,7 +26,27 @@
 		}
 
 
-		// Método
+
+		// Método para traer los datos de un solo alumno
+		function getOneStudentModel($id_alumno){
+			// Consulta sql
+			$sql = "SELECT * FROM alumnos WHERE id=?";
+
+			// Se pasa la consulta como parámetro del método prepare
+			$stmt = connection::conectar()->prepare($sql);
+
+			// Se ejecuta la consulta
+			$stmt->execute();
+
+			// Se almacena en un array los que tenga la consulta
+			$respuestaModel = $stmt->fetch();
+
+			// Si el array está vacío se retorna false, caso contrario retorna el array
+			if($respuestaModel == false){ return false; }
+			else{ return $respuestaModel; }
+		}
+
+
 		 
 	} // end class
 

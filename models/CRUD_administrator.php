@@ -5,6 +5,8 @@
 	/* Clase que maneja los datos */
 	class administrator{
 		
+		#CARRERAS ------------------------------------------------
+		 #-----------------------------------
 		// Método que agrega carreras
 		function addCarreraModel($nombreCarrera){			
 			// Sentencia sql
@@ -17,6 +19,34 @@
 			// Si se ejecuta con éxito retorna true, caso contrario false
 			if($stmt->execute([$nombreCarrera])){ return true; }
 			else { return false; }
+		}
+
+
+		//Método que modifica carrera
+		function updateCarreraModel($id_carrera, $nombreCarrera){
+			// consulta sql
+			$sql = "UPDATE carreras SET nombreCarrera=? WHERE id=?";
+
+			// Se pasa la consulta con el método prepare
+			$stmt = connection::conectar()->prepare($sql);
+
+			// Se ejecuta y se verifica si se ejecutó con éxito (true)
+			if($stmt->execute([$nombreCarrera, $id_carrera])){ return true; }
+			else { return false; }
+		}
+
+
+		// Método que elimina carreras
+		function deleteCarreraModel($id_carrera){
+			// Consulta sql
+			$sql = "DELETE FROM carreras WHERE id=?";
+
+			// Se pasa la consulta como parámetro del método prepare
+			$stmt = connection::conectar()->prepare($sql);
+
+			// Se ejecuta la consulta y se devuelve true si se realizó con éxito
+			if($stmt->execute([$id_carrera])){ return true; }
+			else{ return false; }
 		}
 
 
