@@ -1,20 +1,13 @@
-<?php 
-	
-	// Se manda llamar al archivo que contiene la clase connection con el método conectar
-	// el cual se conecta a la base de datos
-	require_once "connection.php";
-
-
-	class paginas{
-
-		function enlacesPaginasModel($enlace){
-
-			if($enlace == "index" || $enlace==""){
-				$respuestaModel = "views/modules/iniciarSesion.php";
+<?php  
+	class Enlaces{
+		public function paginasModel($enlacesModel){
+			if($enlacesModel=="registrarAlumno" || $enlacesModel=="registrarTutor"){
+				$module = $_SESSION['tipo']."/".$enlacesModel.".php";
 			}
-			return $respuestaModel;
+			else{
+				$module = $_SESSION['tipo']."/inicio.php";		
+			}
+			return $module;
 		}
-	}// fin class datos
-
-
- ?>
+	}
+?>

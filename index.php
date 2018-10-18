@@ -1,12 +1,8 @@
-<?php 
-
+<?php  
 	require_once "controllers/controller.php";
-
-	require_once "models/model.php";
 	require_once "models/enlaces.php";
+	require_once "models/login_Model.php";
 
-	$mvc = new controller();
-
-	$mvc->enlacesPaginasController();
-
- ?>
+	$mvc = new MvcController();
+	$mvc->template();
+?>
