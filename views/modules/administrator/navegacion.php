@@ -54,7 +54,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="#"><i class="fa fa-list-ol"></i>Ver carreras</a></li>
-            <li><a href="#"><i class="fa fa-plus-square"></i>Registrar carrera</a></li>
+            <li><a href="index.php?enlace=registrarCarrera"><i class="fa fa-plus-square"></i>Registrar carrera</a></li>
           </ul>
         </li>
         
