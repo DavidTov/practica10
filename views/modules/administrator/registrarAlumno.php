@@ -1,7 +1,7 @@
 <?php 
 
     #------------------------------------
-  #REGISTRO DE UN ALUMNO  -- %100 --
+  #REGISTRO DE UN ALUMNO  -- 100% --
     #------------------------------------
   // Aquí obtenemos los datos de las carreras y de los tutores para incluirlos en el
   // select correspondiente

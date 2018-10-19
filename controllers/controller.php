@@ -108,16 +108,37 @@
 			$respuestaController = administrator::addTeacherModel($name, $career, $email, $password, $foto);
 
 			if($respuestaController){
-				// Se manda llamar al método para registrar usuarios
+				// si se agregó el maestro, Se manda llamar al método para registrar usuarios
 				$respuestaController = administrator::addUserModel($name,$email,"teacher",$password);
 				if($respuestaController){
+					// Si el maestro se registró con éxito en la tabla usuarios
 					echo "<script> alert('registro exitoso'); </script>";
 					return true; 	
 				}else{
+					// Si no se agregó con éxito en la tabla usuarios
 					return false;
 				}				
 			}
 			else { 
+				// Si no se agregó con éxito en la tabla maestros
+				return false; 
+			}
+		}
+
+
+		// Método para enviar los datos del form de agregar carreras al modelo
+		function addCareerController(){
+			$nameCareer = $_POST["nameCareer"];
+
+			// Se guarda la respuesta del modelo en una variable
+			$respuestaController = administrator::addCareerModel($nameCareer);
+
+			// Si se agregaron con éxito retorna true, caso contrario retorna false
+			if($respuestaController){ 
+			    echo "<script> alert('registro exitoso'); </script>";			    
+				return true; 
+			}
+			else{ 
 				return false; 
 			}
 		}

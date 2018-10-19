@@ -49,7 +49,7 @@
 		#CARRERAS ------------------------------------------------
 		 #-----------------------------------
 		// Método que agrega carreras
-		function addCarreraModel($nombreCarrera){			
+		function addCareerModel($nameCareer){			
 			// Sentencia sql
 			$sql = "INSERT INTO carreras (nombreCarrera) VALUES (?)";
 
@@ -58,7 +58,7 @@
 
 			// Se ejecuta la sentencia
 			// Si se ejecuta con éxito retorna true, caso contrario false
-			if($stmt->execute([$nombreCarrera])){ return true; }
+			if($stmt->execute([$nameCareer])){ return true; }
 			else { return false; }
 		}
 

@@ -1,7 +1,7 @@
 <?php 
     
     #------------------------------------
-  #REGISTRO DE UN MAESTRO-TUTOR  -- %100 --
+  #REGISTRO DE UN MAESTRO-TUTOR  -- 100% --
     #------------------------------------
   
   // Aquí obtenemos los datos de las carreras para incluirlos en el
