@@ -26,7 +26,7 @@
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-list-ol"></i>Ver alumnos</a></li>
+            <li><a href="index.php?enlace=verAlumnos"><i class="fa fa-list-ol"></i>Ver alumnos</a></li>
             <li><a href="index.php?enlace=registrarAlumno"><i class="fa fa-plus-square"></i>Registrar alumno</a></li>
           </ul>
         </li>
@@ -39,7 +39,7 @@
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-list-ol"></i>Ver tutores</a></li>
+            <li><a href="index.php?enlace=verTutores"><i class="fa fa-list-ol"></i>Ver tutores</a></li>
             <!-- Se redirecciona al index con GET correspondinte para que el modelo incluya lo que tenga que incluir -->
             <li><a href="index.php?enlace=registrarTutor"><i class="fa fa-plus-square"></i>Registrar tutor</a></li>
           </ul>
@@ -53,7 +53,7 @@
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-list-ol"></i>Ver carreras</a></li>
+            <li><a href="index.php?enlace=verCarreras"><i class="fa fa-list-ol"></i>Ver carreras</a></li>
             <li><a href="index.php?enlace=registrarCarrera"><i class="fa fa-plus-square"></i>Registrar carrera</a></li>
           </ul>
         </li>

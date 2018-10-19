@@ -64,7 +64,7 @@
 
 
 		//Método que modifica carrera
-		function updateCarreraModel($id_carrera, $nombreCarrera){
+		function updateCareerModel($id_carrera, $nombreCarrera){
 			// consulta sql
 			$sql = "UPDATE carreras SET nombreCarrera=? WHERE id=?";
 
@@ -77,8 +77,8 @@
 		}
 
 
-		// Método que elimina carreras
-		function deleteCarreraModel($id_carrera){
+		// Método que elimina carreras CREO QUE ESTO NO SE NECESITA
+		/*function deleteCareerModel($id_carrera){
 			// Consulta sql
 			$sql = "DELETE FROM carreras WHERE id=?";
 
@@ -88,7 +88,7 @@
 			// Se ejecuta la consulta y se devuelve true si se realizó con éxito
 			if($stmt->execute([$id_carrera])){ return true; }
 			else{ return false; }
-		}
+		}*/
 
 
 
