@@ -3,12 +3,39 @@
 
   // Aquí obtenemos los datos de las carreras y de los tutores para incluirlos en el
   // select correspondiente
-
+  
+  #SE OBTIENEN LOS DATOS DE LAS CARRERAS ------------------------------------------
   // Se declara un objeto del tipo mvcController
   $carreras = new MvcController();
 
   // Se llama al método del controlador para obtener los datos de las carreras
-  $carreras->
+  $carrerasTodas = $carreras->getAllController("carreras");
+
+
+            
+  #SE OBTIENEN LOS DATOS DE LOS MAESTROS/TUTORES ----------------------------------
+  // Se declara otro objeto del tipo MvcController
+  $teachers = new MvcController();
+
+  // Se llama al método para obtener los datos de los maestros y se almacenan en variable
+  $teachersTodos = $teachers->getAllController("maestros");
+
+  
+
+
+  #SE MANDA LLAMAR AL MÉTODO PARA REGISTRAR ALUMNO, EN CASO DE OPRIMIR EL BOTÓN DE GUARDAR
+  if(isset($_POST)){
+    $nombre = $_POST["name"];
+    $paterno = $_POST["lastname"];
+    $materno = $_POST["motherLastname"];
+    $carrera = $_POST["career"];
+    $maestro = $_POST["teacher"];
+
+
+    // Se declara un objeto del tipo MvcController
+    $
+
+  }
 
 
  ?>
@@ -27,35 +54,45 @@
   	
 <div class="box box-warning">
   <br>
-  <form class="form-horizontal">
+
+  <!-- FORMULARIO PARA EL REGISTRO DE UN ALUMNO -->
+  <form class="form-horizontal" method="POST">
     <div class="box-body">
       
       <div class="form-group">
         <label class="col-sm-4 control-label">Nombre:</label>
         <div class="col-sm-6">
-          <input type="text" class="form-control" placeholder="Nombre">
+          <input type="text" class="form-control" placeholder="Nombre" name="name" required>
         </div>
       </div>
       
       <div class="form-group">
         <label class="col-sm-4 control-label">Apellido Paterno:</label>
         <div class="col-sm-6">
-          <input type="text" class="form-control" placeholder="Apellido Paterno">
+          <input type="text" class="form-control" placeholder="Apellido Paterno" name="lastname">
         </div>
       </div>
       
       <div class="form-group">
         <label class="col-sm-4 control-label">Apellido Materno:</label>
         <div class="col-sm-6">
-          <input type="text" class="form-control" placeholder="Apellido Materno">
+          <input type="text" class="form-control" placeholder="Apellido Materno" name="motherLastname">
         </div>
       </div>
       
       <div class="form-group">
         <label class="col-sm-4 control-label">Carrera:</label>
         <div class="col-sm-6">
-          <select class="form-control">
-            <option>ITI</option>
+          <select class="form-control" name="career">
+            <!-- Se muestran las diferentes carreras -->
+            <?php
+            // en este foreach se muestran las carreras en el select  
+              foreach($carrerasTodas as $carreras){
+                echo "<option>";
+                echo $carreras["nombreCarrera"];
+                echo "</option>";
+              }
+             ?>
           </select>
         </div>
       </div>
@@ -63,8 +100,16 @@
       <div class="form-group">
         <label class="col-sm-4 control-label">Tutor:</label>
         <div class="col-sm-6">
-          <select class="form-control">
-            <option>Mario</option>
+          <select class="form-control" name="teacher">
+            <!-- Se muestran los diferentes maestros -->
+            <?php
+            // en este foreach se muestran las carreras en el select  
+              foreach($teachersTodos as $teachers){
+                echo "<option>";
+                echo $teachers["nombreMaestro"];
+                echo "</option>";
+              }
+             ?>
           </select>
         </div>
       </div>
@@ -75,5 +120,7 @@
     </div>
 
   </form>
+  <!-- FIN FORMULARIO PARA EL REGISTRO DE UN ALUMNO -->
+
 </div>
 </section>

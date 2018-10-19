@@ -1,5 +1,7 @@
 <?php 
 	session_start();
+
+  require_once "../../models/CRUD_administrator.php";
 ?>
 <!DOCTYPE html>
 <html>

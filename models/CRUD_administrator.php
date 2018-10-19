@@ -20,7 +20,7 @@
 			$stmt->execute();
 
 			// Se almacena en un array los registros encontrados
-			$respuestaModel = $stmt->fetchAll();
+			$respuestaModel = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 			// Si el array no es vacío, lo retorna, caso contrario retorna false
 			if($respuestaModel){ return $respuestaModel; }

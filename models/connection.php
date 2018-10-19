@@ -7,17 +7,17 @@
 	{	
 
 		// Se declaran las variables miembro de la clase como privadas
-		private $link;
-		private $user;
-		private $password;			
+		//private $link;
+		//private $user;
+		//private $password;			
 
 		function conectar(){			
-			$this->link = "mysql:host=localhost;dbname=practica10"; // se guarda el tipo de bd y el nombre de la bd
-			$this->user = "root"; // nombre de usuario
-			$this->password = ""; // Contraseña
+			//$this->link = "mysql:host=localhost;dbname=practica10"; // se guarda el tipo de bd y el nombre de la bd
+			//$this->user = "root"; // nombre de usuario
+			//$this->password = ""; // Contraseña
 
 			// Se declara un objeto del tipo PDO y se le pasan como parámetros las tres variables antes usadas
-			$pdo = new PDO($this->link, $this->user, $this->password);
+			$pdo = new PDO("mysql:host=localhost;dbname=practica10", "root", "");
 			//$pdo->exec("SET CHARACTER utf8");
 
 			// Se retorna el objeto PDO

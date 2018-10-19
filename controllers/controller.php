@@ -67,7 +67,11 @@
 		// Método que le manda el nombre de una tabla al modelo para recibir todos los datos de 
 		// dicha tabla y poder ser usados en la vista
 		function getAllController($table){
-			
+			// Se almacena en una variable la respuesta del modelo
+			$respuestaController = administrator::getAllModel($table);			
+
+			if($respuestaController){ return $respuestaController; }
+			else{ return false; }
 		}
 	}
 ?>
