@@ -29,6 +29,21 @@
 		}
 
 
+		#USUARIOS ------------------------------------------------
+			#---------------------------------------------------
+		// Método que agrega usuarios dependiendo del tipo
+		function addUserModel($name,$email,$type,$password){
+			// Consulta sql
+			$sql = "INSERT INTO usuarios (nombre,email,tipo,password) VALUES (?,?,?,?)";
+
+			// Se manda la consulta como parámetro del método prepare
+			$stmt = connection::conectar()->prepare($sql);
+
+			// Se ejecuta la consulta y se retorna true en caso de que se realizó con éxito
+			if($stmt->execute([$name,$email,$type,$password])){ return true; }
+			else { return false; }
+		}
+
 
 		
 		#CARRERAS ------------------------------------------------
@@ -80,21 +95,24 @@
 		#MAESTROS - TUTORES ------------------------------------------------
 			#-------------------------------------------
 		// Método para agregar maestros
-		function addTeacherModel($nombreMaestro, $carrera, $email, $password, $foto){
+		function addTeacherModel($name, $career, $email, $password, $foto){
 			// Sentencia sql
 			$sql = "INSERT INTO maestros (nombreMaestro,carrera,email,password,foto) VALUES (?,?,?,?,?)";
 
 			// Se pasa la consulta como parámetro del método prepare
-			$stmt = connection::conectar()->prepare($sql);
-
+			$stmt = connection::conectar()->prepare($sql);				
+				
 			// Se ejecuta la sentencia. Si se ejecuta con éxito retorna true, caso contrario false
-			if($stmt->execute([$nombreMaestro, $carrera, $email, $password, $foto])){ return true; }
+			if($stmt->execute([$name,$career,$email,$password,$foto])){ return true; }
 			else { return false; }
 		}
 
 
+
+		#ALUMNOS-------------------------------------------------------
+			#--------------------------------------------
 		// Método para agregar alumnos
-		function addStudentModel($nombre, $nombreCarrera, $nombreMaestro){
+		function addStudentModel($nombre, $carrera, $maestro){
 			//Sentencia sql
 			$sql = "INSERT INTO alumnos (nombre,carrera,maestro) VALUES (?,?,?)";
 
@@ -102,7 +120,7 @@
 			$stmt = connection::conectar()->prepare($sql);
 
 			// Se ejecuta la sentencia. Si se ejecuta con éxito retorna true, caso contrario false
-			if($stmt->execute([$nombre, $nombreCarrera, $nombreMaestro])){ return true; }
+			if($stmt->execute([$nombre, $carrera, $maestro])){ return true; }
 			else { return false; }
 		}
 

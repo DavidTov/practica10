@@ -1,6 +1,8 @@
 <?php 
-  //REGISTRO DE UN ALUMNO
 
+    #------------------------------------
+  #REGISTRO DE UN ALUMNO  -- %100 --
+    #------------------------------------
   // Aquí obtenemos los datos de las carreras y de los tutores para incluirlos en el
   // select correspondiente
   
@@ -24,16 +26,12 @@
 
 
   #SE MANDA LLAMAR AL MÉTODO PARA REGISTRAR ALUMNO, EN CASO DE OPRIMIR EL BOTÓN DE GUARDAR
-  if(isset($_POST)){
-    $nombre = $_POST["name"];
-    $paterno = $_POST["lastname"];
-    $materno = $_POST["motherLastname"];
-    $carrera = $_POST["career"];
-    $maestro = $_POST["teacher"];
-
-
+  if(isset($_POST["guardar"])){    
     // Se declara un objeto del tipo MvcController
-    $
+    $obj = new MvcController();
+
+    // Se llama al método para registrar un alumno
+    $obj->addStudentController();
 
   }
 
@@ -116,7 +114,7 @@
     </div>
     <div class="box-footer" align="center">
       <div class="col-sm-5"></div>
-      <input type="submit" value="Guardar" class="btn btn-primary col-sm-4" >
+      <input type="submit" value="Guardar" class="btn btn-primary col-sm-4" name="guardar" >
     </div>
 
   </form>

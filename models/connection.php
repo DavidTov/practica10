@@ -18,7 +18,9 @@
 
 			// Se declara un objeto del tipo PDO y se le pasan como parámetros las tres variables antes usadas
 			$pdo = new PDO("mysql:host=localhost;dbname=practica10", "root", "");
-			//$pdo->exec("SET CHARACTER utf8");
+
+			// Se establce el encoding utf8
+			$pdo->exec("SET CHARACTER SET utf8");
 
 			// Se retorna el objeto PDO
 			return $pdo;

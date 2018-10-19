@@ -73,5 +73,53 @@
 			if($respuestaController){ return $respuestaController; }
 			else{ return false; }
 		}
+
+
+
+		// Método para enviar los datos del form de registro al modelo
+		function addStudentController(){
+			$nombre = $_POST["name"] . " " . $_POST["lastname"] . " " . $_POST["motherLastname"];
+    		$carrera = $_POST["career"];
+    		$maestro = $_POST["teacher"];
+			// Se guarda la respuesta del modelo en una variable
+			$respuestaController = administrator::addStudentModel($nombre, $carrera, $maestro);
+
+			if($respuestaController){ 
+				echo "<script> alert('registro exitoso'); </script>";
+				return true; 
+			}
+			else { return false; }
+		}
+
+
+		// Método para enviar los datos del form de registro al modelo
+		function addTeacherController(){
+
+			// Se concatenan el nombre y los apellidos paterno y materno
+			$name = $_POST["nameTeacher"] . " " . $_POST["lastnameTeacher"] . " " . $_POST["motherLastnameTeacher"];
+    		$career = $_POST["teacherCareer"];
+    		$email = $_POST["teacherEmail"];
+    		$password = $_POST["teacherPassword"];    		
+
+    		//Falta lo de la foto
+    		$foto = "foto";    		    	
+
+			// Se guarda la respuesta del modelo en una variable
+			$respuestaController = administrator::addTeacherModel($name, $career, $email, $password, $foto);
+
+			if($respuestaController){
+				// Se manda llamar al método para registrar usuarios
+				$respuestaController = administrator::addUserModel($name,$email,"teacher",$password);
+				if($respuestaController){
+					echo "<script> alert('registro exitoso'); </script>";
+					return true; 	
+				}else{
+					return false;
+				}				
+			}
+			else { 
+				return false; 
+			}
+		}
 	}
 ?>
