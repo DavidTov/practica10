@@ -53,7 +53,7 @@
       <div class="form-group">
         <label class="col-sm-4 control-label">Nombre:</label>
         <div class="col-sm-6">
-          <input type="text" class="form-control" name="nameTeacher" value="<?php echo $infoTutor['nombreMaestro'] ?>" required>
+          <input type="text" class="form-control" name="nameTeacher" value="<?php echo $infoTutor['nombre'] ?>" required>
         </div>
       </div>
       

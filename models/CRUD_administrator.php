@@ -95,15 +95,15 @@
 		#MAESTROS - TUTORES ------------------------------------------------
 			#-------------------------------------------
 		// Método para agregar maestros
-		function addTeacherModel($name, $career, $email, $password, $foto){
+		function addTeacherModel($completeName ,$name, $lastname, $motherLastname, $career, $email, $password, $foto){
 			// Sentencia sql
-			$sql = "INSERT INTO maestros (nombreMaestro,carrera,email,password,foto) VALUES (?,?,?,?,?)";
+			$sql = "INSERT INTO maestros (nombreMaestro,nombre,paterno,materno,carrera,email,password,foto) VALUES (?,?,?,?,?,?,?,?)";
 
 			// Se pasa la consulta como parámetro del método prepare
 			$stmt = connection::conectar()->prepare($sql);				
-				
+
 			// Se ejecuta la sentencia. Si se ejecuta con éxito retorna true, caso contrario false
-			if($stmt->execute([$name,$career,$email,$password,$foto])){ return true; }
+			if($stmt->execute([$completeName,$name,$lastname,$motherLastname,$career,$email,$password,$foto])){ return true; }
 			else { return false; }
 		}
 
@@ -125,13 +125,17 @@
 			$stmt -> execute(array($id));
 			$user = $stmt->fetch();
 
-			$sql = "UPDATE maestros SET nombreMaestro = ?, paterno = ?, materno = ?, carrera = ?, password = ? WHERE id = ?";
+			$sql = "UPDATE maestros SET nombreMaestro = ?, nombre = ?, paterno = ?, materno = ?, carrera = ?, password = ? WHERE id = ?";
 			$stmt = connection::conectar()->prepare($sql);
 
-			if($stmt->execute(array($nombre,$paterno,$materno,$carrera,$password,$id))){
+
+			// Se concatena el nombre completos
+			$teacherCompleteName = $nombre . " " . $paterno . " " . $materno;
+
+			if($stmt->execute(array($teacherCompleteName,$nombre,$paterno,$materno,$carrera,$password,$id))){
 				$sql = "UPDATE usuarios SET nombre = ?, password = ? WHERE email=?";
 				$stmt = connection::conectar()->prepare($sql);
-				if($stmt->execute(array($nombre." ".$paterno." ".$materno,$password,$user['email']))){
+				if($stmt->execute(array($teacherCompleteName,$password,$user['email']))){
 					return true;
 				}else{
 					return false;

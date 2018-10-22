@@ -151,23 +151,29 @@
 		// Método para enviar los datos del form de registro al modelo
 		function addTeacherController(){
 
+			// Se obtiene el nombre
+			$name = $_POST["nameTeacher"];
 			// Se concatenan el nombre y los apellidos paterno y materno
-			$name = $_POST["nameTeacher"] . " " . $_POST["lastnameTeacher"] . " " . $_POST["motherLastnameTeacher"];
-    		$career = $_POST["teacherCareer"];
-    		$email = $_POST["teacherEmail"];
-    		$password = $_POST["teacherPassword"];    		
+			$completeName = $_POST["nameTeacher"] . " " . $_POST["lastnameTeacher"] . " " . $_POST["motherLastnameTeacher"];			
+    		$lastname = $_POST["lastnameTeacher"]; // apellido paterno
+    		$motherLastname = $_POST["motherLastnameTeacher"]; // apellido materno
+    		$career = $_POST["teacherCareer"]; // Carrera a la que pertenece
+    		$email = $_POST["teacherEmail"]; // Correo del profesor
+    		$password = $_POST["teacherPassword"]; // Contraseña
 
     		//Falta lo de la foto
     		$foto = "foto";    		    	
 
-			// Se guarda la respuesta del modelo en una variable
+			// Se crea un objeto del tipo administrator
 			$respuestaController = new administrator();
-			$true = $respuestaController->addTeacherModel($name, $career, $email, $password, $foto);
+			// Se guarda la respuesta del modelo en una variable, y se pasan todos los parámetros
+			$true = $respuestaController->addTeacherModel($completeName, $name, $lastname, $motherLastname, $career, $email, $password, $foto);
 
+			// Si la respuesta fue true se procede a gregar al maestro en la tabla de usuarios
 			if($true){
 				// si se agregó el maestro, Se manda llamar al método para registrar usuarios
-				$user->addUserModel($name,$email,"teacher",$password);
-				if($user){
+				$respuesta = $respuestaController->addUserModel($completeName,$email,"teacher",$password);
+				if($respuesta){
 					// Si el maestro se registró con éxito en la tabla usuarios
 					echo "<script> alert('Tutor registrado exitosamente!'); </script>";
 					return true; 	

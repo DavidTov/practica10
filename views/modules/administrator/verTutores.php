@@ -45,7 +45,7 @@
  				// Comienza el foreach
  				foreach($teachers as $teacher):
  					echo "<tr>"; // comienza un registro
- 					echo "<td>" . $teacher["nombreMaestro"] . "</td>";
+ 					echo "<td>" . $teacher["nombre"] . "</td>";
  					echo "<td>" . $teacher["paterno"] . "</td>";
  					echo "<td>" . $teacher["materno"] . "</td>";
  					echo "<td>" . $teacher["carrera"] . "</td>";
