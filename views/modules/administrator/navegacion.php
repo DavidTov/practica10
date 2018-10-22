@@ -67,8 +67,8 @@
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-list-ol"></i>Ver problematicas</a></li>
-            <li><a href="#"><i class="fa fa-plus-square"></i>Registrar problematica</a></li>
+            <li><a href="index.php?enlace=verProblematicas"><i class="fa fa-list-ol"></i>Ver problematicas</a></li>
+            <li><a href="index.php?enlace=registrarProblematica"><i class="fa fa-plus-square"></i>Registrar problematica</a></li>
           </ul>
         </li>
         

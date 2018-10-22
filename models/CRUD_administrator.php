@@ -3,7 +3,7 @@
 	include_once "connection.php";
 
 	/* Clase que maneja los datos */
-	class administrator{
+	class administrator extends connection{
 
 
 		#GENERAL--------------------------------------------------
@@ -107,23 +107,108 @@
 			else { return false; }
 		}
 
+		//metodo para obtener los datos de un tutor especifico
+		function infoTutorModel($id){
+			$sql = "SELECT * FROM maestros WHERE id = ?";
+			$stmt = connection::conectar()->prepare($sql);
+
+			$stmt -> execute(array($id));
+
+			$r = $stmt->fetch();
+
+			return $r;
+		}
+
+		function updateTeacherModel($nombre,$paterno,$materno,$carrera,$password,$id){
+			$sql = "SELECT * FROM maestros WHERE id = ?";
+			$stmt = connection::conectar()->prepare($sql);
+			$stmt -> execute(array($id));
+			$user = $stmt->fetch();
+
+			$sql = "UPDATE maestros SET nombreMaestro = ?, paterno = ?, materno = ?, carrera = ?, password = ? WHERE id = ?";
+			$stmt = connection::conectar()->prepare($sql);
+
+			if($stmt->execute(array($nombre,$paterno,$materno,$carrera,$password,$id))){
+				$sql = "UPDATE usuarios SET nombre = ?, password = ? WHERE email=?";
+				$stmt = connection::conectar()->prepare($sql);
+				if($stmt->execute(array($nombre." ".$paterno." ".$materno,$password,$user['email']))){
+					return true;
+				}else{
+					return false;
+				}
+			}else{
+				return false;
+			}
+		}
 
 
 		#ALUMNOS-------------------------------------------------------
 			#--------------------------------------------
 		// Método para agregar alumnos
-		function addStudentModel($nombre, $carrera, $maestro){
+		function addStudentModel($nombre, $paterno,$materno,$carrera, $maestro){
 			//Sentencia sql
-			$sql = "INSERT INTO alumnos (nombre,carrera,maestro) VALUES (?,?,?)";
+			$sql = "INSERT INTO alumnos (nombre,paterno,materno,carrera,maestro) VALUES (?,?,?,?,?)";
 
 			// Se pasa la sentencia como parámetro del método prepare
 			$stmt = connection::conectar()->prepare($sql);
 
 			// Se ejecuta la sentencia. Si se ejecuta con éxito retorna true, caso contrario false
-			if($stmt->execute([$nombre, $carrera, $maestro])){ return true; }
+			if($stmt->execute([$nombre, $paterno, $materno,$carrera, $maestro])){ return true; }
 			else { return false; }
 		}
 
+		//metodo para obtener los datos de un alumno especifico
+		function InfoStudentModel($id){
+			$sql = "SELECT * FROM alumnos WHERE id = ?";
+			$stmt = connection::conectar()->prepare($sql);
+
+			$stmt -> execute(array($id));
+
+			$r = $stmt->fetch();
+
+			return $r;
+		}
+
+		//metodo para eliminar un alumno
+		function deleteStudentModel($id){
+			$sql = "DELETE FROM alumnos WHERE id = ?";
+			$stmt = connection::conectar()->prepare($sql);
+
+			if($stmt->execute(array($id))){
+				return true;
+			}else{
+				return false;
+			}
+		}
+		
+		//metodo para actualizar los datos de un alumno
+		function updateStudentModel($nombre,$paterno,$materno,$carrera,$maestro,$id){
+			$sql="UPDATE alumnos SET nombre = ?, paterno = ?, materno = ?, carrera = ?, maestro = ? WHERE id = ?";
+			$stmt = connection::conectar()->prepare($sql);
+			if($stmt->execute(array($nombre,$paterno,$materno,$carrera,$maestro,$id))){
+				return true;
+			}else{
+				return false;
+			}
+		}
+
+		#PROBLEMATICAS----------------------------------------------
+		#---------------------------------------
+		//metodo para agregar problematica
+		function addProblemModel($nombre,$description){
+			//sentencias sql
+			$sql = "INSERT INTO problematica (nombre,descripcion) VALUES (?,?)";
+
+			//se pasa la sentencia como parametro del metodo prepare
+			$stmt = connection::conectar()->prepare($sql);
+
+			//se ejectua la sentencia para realizar la insercion
+			if($stmt->execute(array($nombre,$description))){
+				return true;
+			}else{
+				return false;
+			}
+		}
 	}// fin class datos
 
  ?>

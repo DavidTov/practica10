@@ -6,13 +6,13 @@
 
 	// Clase login extiende de la clase connection
 	// Esta clase contiene el método iniciar_sesión para validar los datos ingresados en el form
-	class Login extends Connection{
+	class Login extends connection{
 
 		// Se pasa un array como parámetro el cual contiene el email y contraseña del usuario
 		public function iniciar_sesion($datos){
 
 			// Se pasa la consulta sql como parámetro del método prepare
-			$stmt = Connection::conectar()->prepare("SELECT * FROM usuarios WHERE email = ? and password = ?");
+			$stmt = connection::conectar()->prepare("SELECT * FROM usuarios WHERE email = ? and password = ?");
 
 			// Se ejecuta la consulta pasándole como parámetros los valores de email y password del array
 			$stmt->execute(array($datos['email'],$datos['contraseña']));

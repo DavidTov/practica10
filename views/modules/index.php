@@ -13,6 +13,7 @@
 
 	<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
 	<link rel="stylesheet" href="../bower_components/Ionicons/css/ionicons.min.css">
 	<link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
 	<link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
@@ -137,5 +138,21 @@
 <script src="../dist/js/adminlte.min.js"></script>
 <script src="../dist/js/pages/dashboard.js"></script>
 <script src="../dist/js/demo.js"></script>
+<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script>
+  $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
 </html>
 

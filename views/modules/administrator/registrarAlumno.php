@@ -67,14 +67,14 @@
       <div class="form-group">
         <label class="col-sm-4 control-label">Apellido Paterno:</label>
         <div class="col-sm-6">
-          <input type="text" class="form-control" placeholder="Apellido Paterno" name="lastname">
+          <input type="text" class="form-control" placeholder="Apellido Paterno" name="lastname" required>
         </div>
       </div>
       
       <div class="form-group">
         <label class="col-sm-4 control-label">Apellido Materno:</label>
         <div class="col-sm-6">
-          <input type="text" class="form-control" placeholder="Apellido Materno" name="motherLastname">
+          <input type="text" class="form-control" placeholder="Apellido Materno" name="motherLastname" required>
         </div>
       </div>
       

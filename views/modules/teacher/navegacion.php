@@ -19,7 +19,7 @@
         <li><a href="#"><i class="fa fa-th"></i> <span>Inicio</span></a></li>
 
         <li class="treeview">
-          <a href="#"><i class="fa fa-user"></i> <span>Tutoria</span>
+          <a href="#"><i class="fa fa-graduation-cap"></i> <span>Tutorias</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>

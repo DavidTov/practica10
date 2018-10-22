@@ -68,9 +68,10 @@
 		// dicha tabla y poder ser usados en la vista
 		function getAllController($table){
 			// Se almacena en una variable la respuesta del modelo
-			$respuestaController = administrator::getAllModel($table);			
+			$respuestaController = new administrator();
+			$rows = $respuestaController->getAllModel($table);			
 
-			if($respuestaController){ return $respuestaController; }
+			if($rows){ return $rows; }
 			else{ return false; }
 		}
 
@@ -78,20 +79,75 @@
 
 		// Método para enviar los datos del form de registro al modelo
 		function addStudentController(){
-			$nombre = $_POST["name"] . " " . $_POST["lastname"] . " " . $_POST["motherLastname"];
+			$nombre = $_POST["name"];
+			$paterno = $_POST["lastname"];
+			$materno = $_POST['motherLastname'];
     		$carrera = $_POST["career"];
     		$maestro = $_POST["teacher"];
 			// Se guarda la respuesta del modelo en una variable
-			$respuestaController = administrator::addStudentModel($nombre, $carrera, $maestro);
+			$respuestaController = new administrator();
+			$true = $respuestaController->addStudentModel($nombre, $paterno,$materno,$carrera, $maestro);
 
-			if($respuestaController){ 
-				echo "<script> alert('registro exitoso'); </script>";
+			if($true){ 
+				echo "<script> alert('Alumno registrado exitosamente!'); </script>";
 				return true; 
-			}
-			else { return false; }
+			}else { return false; }
 		}
 
+		//metodo para actualizar los datos de un alumno
+		function updateStudentController($id){
+			$nombre = $_POST["name"];
+			$paterno = $_POST["lastname"];
+			$materno = $_POST['motherLastname'];
+    		$carrera = $_POST["career"];
+    		$maestro = $_POST["teacher"];
+			// Se guarda la respuesta del modelo en una variable
+			$respuestaController = new administrator();
+			$update = $respuestaController->updateStudentModel($nombre, $paterno,$materno,$carrera, $maestro,$id);
 
+			if($update){ 
+				echo "<script> alert('Datos de alumno actualizados exitosamente!'); </script>";
+				return true; 
+			}else { return false; }
+		}
+		//metodo para obtener la informacion de un estudiante
+		function InfoStudentController($id){
+			$info = new administrator();
+			return $info->InfoStudentModel($id);
+		}
+
+		//metodo para obtener la informacion de un tutor
+		function infoTutorController($id){
+			$info = new administrator();
+			return $info->infoTutorModel($id);
+		}		
+		//metodo para eliminar un alumno
+		function deleteStudentController($id){
+			$deleteStudent = new administrator();
+
+			if($deleteStudent->deleteStudentModel($id)){
+				echo "<script>alert('Se ha eliminado el alumno exitosamente')</script>"; 
+			}else{
+				echo "<script>alert('No se ha podido eliminar el alumno')</script>";
+			}
+		}
+
+		function updateTeacherController($id){
+			$name = $_POST["nameTeacher"];
+			$paterno = $_POST['lastnameTeacher'];
+			$materno = $_POST['motherLastnameTeacher'];
+    		$career = $_POST["teacherCareer"];
+    		$password = $_POST["teacherPassword"];    		
+
+    		$update = new administrator();
+
+    		if($update->updateTeacherModel($name,$paterno,$materno,$career,$password,$id)){
+				echo "<script> alert('Datos de tutor actualizados exitosamente!'); </script>";
+    		}else{
+    			echo "<script> alert('No se pudieron actualizar los datos!'); </script>";
+    		}
+
+		}
 		// Método para enviar los datos del form de registro al modelo
 		function addTeacherController(){
 
@@ -105,14 +161,15 @@
     		$foto = "foto";    		    	
 
 			// Se guarda la respuesta del modelo en una variable
-			$respuestaController = administrator::addTeacherModel($name, $career, $email, $password, $foto);
+			$respuestaController = new administrator();
+			$true = $respuestaController->addTeacherModel($name, $career, $email, $password, $foto);
 
-			if($respuestaController){
+			if($true){
 				// si se agregó el maestro, Se manda llamar al método para registrar usuarios
-				$respuestaController = administrator::addUserModel($name,$email,"teacher",$password);
-				if($respuestaController){
+				$user->addUserModel($name,$email,"teacher",$password);
+				if($user){
 					// Si el maestro se registró con éxito en la tabla usuarios
-					echo "<script> alert('registro exitoso'); </script>";
+					echo "<script> alert('Tutor registrado exitosamente!'); </script>";
 					return true; 	
 				}else{
 					// Si no se agregó con éxito en la tabla usuarios
@@ -131,15 +188,31 @@
 			$nameCareer = $_POST["nameCareer"];
 
 			// Se guarda la respuesta del modelo en una variable
-			$respuestaController = administrator::addCareerModel($nameCareer);
+			$respuestaController = new administrator();
+			$carrera= $respuestaController->addCareerModel($nameCareer);
 
 			// Si se agregaron con éxito retorna true, caso contrario retorna false
-			if($respuestaController){ 
-			    echo "<script> alert('registro exitoso'); </script>";			    
+			if($carrera){ 
+			    echo "<script> alert('Carrera registrada exitosamente'); </script>";			    
 				return true; 
 			}
 			else{ 
 				return false; 
+			}
+		}
+
+		function addProblemController(){
+			$nameProblem = $_POST['nameProblem'];
+			$descriptionProblem = $_POST['descriptionProblem'];
+
+			$respuestaController = new administrator();
+			$problem = $respuestaController->addProblemModel($nameProblem,$descriptionProblem);
+
+			if($problem){
+				echo "<script> alert('Problematica registrada exitosamente'); </script>";		
+				return true;
+			}else{
+				return false;
 			}
 		}
 	}

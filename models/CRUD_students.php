@@ -4,7 +4,7 @@
 	include_once "connection.php";
 
 	// Clase para hacer el crud de los alumnos
-	class studentsData{
+	class studentsData extends connection{
 
 		// Método para traer los datos de los alumnos
 		function getAllStudentsModel(){

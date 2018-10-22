@@ -7,16 +7,17 @@
 		// parámetro que se le pase
 		public function paginasModel($enlacesModel){			
 			// REGISTRO (ADMINISTRATOR)
-			if($enlacesModel=="registrarAlumno" || $enlacesModel=="registrarTutor" || $enlacesModel=="registrarCarrera"){
+			if($enlacesModel=="registrarAlumno" || $enlacesModel=="registrarTutor" || $enlacesModel=="registrarCarrera" || $enlacesModel=="registrarProblematica" || $enlacesModel=="editarAlumno" || $enlacesModel=="eliminarAlumno" || $enlacesModel=="editarTutor"){
 				// Se concatena el tipo y el enlace más la extensión .php
 				$module = $_SESSION['tipo']."/".$enlacesModel.".php";
 			}
 
 			// VER (ADMINISTRATOR)
-			else if($enlacesModel=="verAlumnos" || $enlacesModel=="verTutores" || $enlacesModel=="verCarreras"){
+			else if($enlacesModel=="verAlumnos" || $enlacesModel=="verTutores" || $enlacesModel=="verCarreras" || $enlacesModel=="verProblematicas"){
 				// Se concatena el tipo y el enlace más la extensión .php
 				$module = $_SESSION['tipo']."/".$enlacesModel.".php";
 			}
+
 			else{
 				$module = $_SESSION['tipo']."/inicio.php";		
 			}

@@ -5,7 +5,7 @@
 	
 	// Se crea una clase para todas las operaciones que hará el maestro
 
-	class teacher{
+	class teacher extends connection{
 
 		// Método que asigna una tutoría
 		function addTutorialsModel($id_maestro, $fecha, $hora, $tipoTutoria, $problematica){
