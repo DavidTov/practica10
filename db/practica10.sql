@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 20, 2018 at 07:22 PM
+-- Generation Time: Oct 22, 2018 at 11:09 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -31,6 +31,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `alumnos` (
   `id` int(11) NOT NULL,
   `nombre` varchar(255) COLLATE utf8_bin NOT NULL,
+  `paterno` varchar(255) COLLATE utf8_bin NOT NULL,
+  `materno` varchar(255) COLLATE utf8_bin NOT NULL,
   `carrera` varchar(255) COLLATE utf8_bin NOT NULL,
   `maestro` varchar(255) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -39,16 +41,8 @@ CREATE TABLE `alumnos` (
 -- Dumping data for table `alumnos`
 --
 
-INSERT INTO `alumnos` (`id`, `nombre`, `carrera`, `maestro`) VALUES
-(1, 'David', 'INGENIERIA EN TECNOLOGIAS DE LA INFORMACION', 'Karla Esmeralda Vázquez Ortíz'),
-(2, 'David Tovias Alanis', 'INGENIERIA EN TECNOLOGIAS DE LA INFORMACION', 'SAID'),
-(4, 'Juan Pérez Flores', 'INGENIERIA MECATRONICA', 'SAID'),
-(5, 'Juan Pérez Flores', 'INGENIERIA MECATRONICA', 'SAID'),
-(6, 'Juan Pérez Flores', 'INGENIERIA MECATRONICA', 'SAID'),
-(7, 'Ana López Martínez', 'INGENIERIA EN TECNOLOGIAS DE LA INFORMACION', 'SAID'),
-(8, 'Ana López Martínez', 'INGENIERIA EN TECNOLOGIAS DE LA INFORMACION', 'SAID'),
-(9, 'Ana López Martínez', 'INGENIERIA EN TECNOLOGIAS DE LA INFORMACION', 'SAID'),
-(10, 'Ana López Martínez', 'INGENIERIA EN TECNOLOGIAS DE LA INFORMACION', 'SAID');
+INSERT INTO `alumnos` (`id`, `nombre`, `paterno`, `materno`, `carrera`, `maestro`) VALUES
+(13, 'David', 'Tovias', 'Alanis', 'INGENIERIA EN TECNOLOGIAS DE LA INFORMACION', 'Said Polanco Martagón');
 
 -- --------------------------------------------------------
 
@@ -92,6 +86,9 @@ INSERT INTO `carreras` (`id`, `nombreCarrera`) VALUES
 CREATE TABLE `maestros` (
   `id` int(11) NOT NULL,
   `nombreMaestro` varchar(255) COLLATE utf8_bin NOT NULL,
+  `nombre` varchar(255) COLLATE utf8_bin NOT NULL,
+  `paterno` varchar(255) COLLATE utf8_bin NOT NULL,
+  `materno` varchar(255) COLLATE utf8_bin NOT NULL,
   `carrera` varchar(255) COLLATE utf8_bin NOT NULL,
   `email` varchar(255) COLLATE utf8_bin NOT NULL,
   `password` varchar(255) COLLATE utf8_bin NOT NULL,
@@ -102,10 +99,9 @@ CREATE TABLE `maestros` (
 -- Dumping data for table `maestros`
 --
 
-INSERT INTO `maestros` (`id`, `nombreMaestro`, `carrera`, `email`, `password`, `foto`) VALUES
-(1, 'SAID', 'INGENIERIA EN TECNOLOGIAS DE LA INFORMACION', 'said@gmail.com', 'said', 'foto'),
-(3, 'Karla Esmeralda Vázquez Ortíz', 'INGENIERIA EN TECNOLOGIAS DE LA INFORMACION', 'karla@gmail.com', 'karla', 'foto'),
-(13, 'Benjamín Ortíz Moctezuma', 'INGENIERIA MECATRONICA', 'benjamin@gmail.com', 'benjamin', 'foto');
+INSERT INTO `maestros` (`id`, `nombreMaestro`, `nombre`, `paterno`, `materno`, `carrera`, `email`, `password`, `foto`) VALUES
+(17, 'Said Polanco Martagón', 'Said', 'Polanco', 'Martagón', 'INGENIERIA MECATRONICA', 'said@gmail.com', '123', 'foto'),
+(18, 'Karla Esmeralda Vázquez Ortíz', 'Karla Esmeralda', 'Vázquez', 'Ortíz', 'INGENIERIA EN TECNOLOGIAS DE LA INFORMACION', 'karla@gmail.com', 'karla', 'foto');
 
 -- --------------------------------------------------------
 
@@ -118,6 +114,14 @@ CREATE TABLE `problematica` (
   `nombre` varchar(255) COLLATE utf8_bin NOT NULL,
   `decripcion` varchar(255) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `problematica`
+--
+
+INSERT INTO `problematica` (`id`, `nombre`, `decripcion`) VALUES
+(1, 'Noviazgo', 'El alumno tiene problemas con su pareja.'),
+(2, 'Violencia intrafamiliar', 'El alumno sufre algún tipo de maltrato físico o psicológico por parte de los familiares que viven con él.');
 
 -- --------------------------------------------------------
 
@@ -154,7 +158,8 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id`, `nombre`, `email`, `tipo`, `password`) VALUES
 (1, 'Mario Humberto Rodriguez Chavez', 'mario@gmail.com', 'administrator', 'mario'),
-(2, 'Benjamín Ortíz Moctezuma', 'benjamin@gmail.com', 'teacher', 'benjamin');
+(4, 'Said Polanco Martagón', 'said@gmail.com', 'teacher', '123'),
+(5, 'Karla Esmeralda Vázquez Ortíz', 'karla@gmail.com', 'teacher', 'karla');
 
 --
 -- Indexes for dumped tables
@@ -222,7 +227,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `alumnos`
 --
 ALTER TABLE `alumnos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `alumnos_tutorias`
@@ -240,13 +245,13 @@ ALTER TABLE `carreras`
 -- AUTO_INCREMENT for table `maestros`
 --
 ALTER TABLE `maestros`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `problematica`
 --
 ALTER TABLE `problematica`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tutoria`
@@ -258,7 +263,7 @@ ALTER TABLE `tutoria`
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
