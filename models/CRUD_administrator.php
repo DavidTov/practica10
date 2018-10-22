@@ -201,7 +201,8 @@
 		//metodo para agregar problematica
 		function addProblemModel($nombre,$description){
 			//sentencias sql
-			$sql = "INSERT INTO problematica (nombre,descripcion) VALUES (?,?)";
+			$sql = "INSERT INTO problematica (nombre,decripcion) VALUES (?,?)";
+			// Es decripcion (mal escrito en la bd)
 
 			//se pasa la sentencia como parametro del metodo prepare
 			$stmt = connection::conectar()->prepare($sql);
@@ -212,6 +213,40 @@
 			}else{
 				return false;
 			}
+		}
+
+
+		// Método para obtener un registro de una problemática dependiendo del id
+		function infoProblemModel($id){
+			// Consulta sql
+			$sql = "SELECT * FROM problematica WHERE id=?";
+
+			// Se manda la consulta como parámetro al método prepare
+			$stmt = connection::conectar()->prepare($sql);
+
+			// Se ejecuta la sentencia, pasándole el id
+			$stmt->execute([$id]);
+
+			// Se guarda lo que arroje la consulta en un array
+			$respuestaModel = $stmt->fetch();
+
+			// Retorna el array si no está vació, devuelve false en caso contrario
+			if($respuestaModel){ return $respuestaModel; }
+			else{ return false; }			
+		}
+
+
+		// Método para actualizar una problemática
+		function updateProblemModel($id,$nameProblem,$description){
+			// Consulta sql
+			$sql = "UPDATE problematica SET nombre=?, decripcion=? WHERE id=?";
+
+			// Se pasa la consulta como parámetro del metodo prepare
+			$stmt = connection::conectar()->prepare($sql);
+
+			// Si se ejecuta con éxitp devuelve true, caso contrario devuelve false
+			if($stmt->execute([$nameProblem,$description,$id])) { return true; }
+			else { return false; }
 		}
 	}// fin class datos
 

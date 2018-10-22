@@ -24,9 +24,9 @@
 
     // Se llama al método para update tutor
     $obje->updateTeacherController($_GET['id']);
-
-
   }
+
+
  ?>
 
 
@@ -76,7 +76,9 @@
         <div class="col-sm-6">
           <select class="form-control" name="teacherCareer">
             <!-- Se muestran las diferentes carreras -->
+            <option> <?php echo $infoTutor['carrera']; ?> </option>
             <?php
+            
             // en este foreach se muestran las carreras en el select  
               foreach($carrerasTodas as $carreras){
                 echo "<option>";

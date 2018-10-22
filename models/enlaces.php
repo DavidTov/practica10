@@ -18,6 +18,11 @@
 				$module = $_SESSION['tipo']."/".$enlacesModel.".php";
 			}
 
+			// EDITAR PROBLEMÁTICA
+			else if($enlacesModel=="editarProblematica"){
+				$module = $_SESSION['tipo']."/".$enlacesModel.".php";	
+			}
+
 			else{
 				$module = $_SESSION['tipo']."/inicio.php";		
 			}

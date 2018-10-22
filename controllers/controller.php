@@ -207,6 +207,10 @@
 			}
 		}
 
+
+		#PROBLEMÁTICAS ------------------------------------------------------
+			# ---------------------------------------------
+		// Método para enviar los datos del form al modelo para registrar una problemática
 		function addProblemController(){
 			$nameProblem = $_POST['nameProblem'];
 			$descriptionProblem = $_POST['descriptionProblem'];
@@ -219,6 +223,51 @@
 				return true;
 			}else{
 				return false;
+			}
+		}
+
+
+		// Método para obtener los datos de una problemática
+		function infoProblemController(){
+			// Se declara un objeto del tipo administrator
+			$problem = new administrator();
+
+			// Se guarda la respuesta del modelo, se pasa como parámetro la variable con GET
+			$respuestaController = $problem->infoProblemModel($_GET["id"]);
+
+			// Si se consultó con éxito el registro se retorna en la variable, sino retorna false
+			if($respuestaController){ return $respuestaController; }
+			else{ return false; }				
+		}
+
+
+		// Método para actualizar una problemática
+		function updateProblemController(){
+			// Se obtienen los datos del form con $_POST
+			$id = $_POST["id"];
+			$nameProblem = $_POST["nameProblem"];
+			$description = $_POST["descriptionProblem"];
+
+			/*echo $id . "<br>";
+			echo $nameProblem . "<br>";
+			echo $description . "<br>";
+
+			exit();
+			*/
+			
+			// Se declara un objeto del tipo administrator
+			$problem = new administrator();
+
+			// Se guarda el resultado que devuelve el modelo en una variable
+			$respuestaController = $problem->updateProblemModel($id, $nameProblem, $description);
+
+			// Si se actualizaron los datos correctamente
+			if($respuestaController){
+				echo "<script> alert('Problematica actualizada exitosamente'); </script>";		
+				return true;
+			}else{
+				echo "<script> alert('Error -> No se actualizaron los datos'); </script>";		
+				return false; // Si no se actualizó
 			}
 		}
 	}

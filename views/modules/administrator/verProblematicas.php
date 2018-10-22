@@ -45,7 +45,7 @@
  				foreach($problems as $problem):
  					echo "<tr>"; // comienza un registro
  					echo "<td>" . $problem["nombre"] . "</td>";
- 					echo "<td>" . $problem["descripcion"] . "</td>";
+ 					echo "<td>" . $problem["decripcion"] . "</td>"; // es decripcion (mal escrito en la bd)
  			 ?>
  			 <!-- BOTÓN PARA EDITAR LOS DATOS DE LOS TUTORES-->
  			 <td><center><a href="index.php?enlace=editarProblematica&id=<?php echo($problem['id']) ?>"><i class="fa fa-pencil"></i></a></center></td>
